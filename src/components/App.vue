@@ -2,7 +2,12 @@
     <div id="app" class="container">
         <h1>Curso de Vue.js</h1>
 
-        <app-tasks></app-tasks>
+        <router-link to="/">Dashboard</router-link>
+        <router-link to="/tasks">Tareas</router-link>
+
+        <keep-alive>
+            <router-view></router-view>
+        </keep-alive>
 
         <!-- <pre class="code pre-scrollable">{{ $data }}</pre> -->
 
@@ -13,17 +18,12 @@
 </template>
 
 <script>
-import Tasks from 'components/Task/Tasks.vue';
-
 export default {
     data() {
         return {
             name: 'Luis Parrado',
         }
     },
-    components: {
-        'app-tasks': Tasks
-    }
 }
 </script>
 
