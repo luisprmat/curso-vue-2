@@ -2,8 +2,14 @@
     <div id="app" class="container">
         <h1>Curso de Vue.js</h1>
 
-        <router-link to="/">Dashboard</router-link>
-        <router-link to="/tasks">Tareas</router-link>
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <router-link to="/" active-class="active" class="nav-link" exact>Dashboard</router-link>
+            </li>
+            <li class="nav-item">
+                <router-link to="/tasks" active-class="active" class="nav-link">Tareas</router-link>
+            </li>
+        </ul>
 
         <keep-alive>
             <router-view></router-view>
