@@ -15,8 +15,6 @@
             <router-view></router-view>
         </keep-alive>
 
-        <!-- <pre class="code pre-scrollable">{{ $data }}</pre> -->
-
         <footer class="footer">
             <p>&copy; 2019. {{ name }}. Derechos reservados</p>
         </footer>
@@ -53,10 +51,4 @@ export default {
             color: lightslategrey;
         }
     }
-
-    .code {
-        background-color: lightgray;
-    }
-
-
 </style>

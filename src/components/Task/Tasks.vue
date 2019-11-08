@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import store from 'store'
 import TaskList from './List.vue'
 import TaskForm from './CreateForm.vue'
 
@@ -17,32 +18,10 @@ export default {
         'task-list': TaskList,
         'task-form' : TaskForm
     },
-    created() {
-        this.tasks.forEach((task, index) => {
-            this.$set(task, 'id', index + 1)
-        });
-    },
     data() {
         return {
             new_task: '',
-            tasks: [
-                {
-                    description: 'Aprender Vue.js 2',
-                    pending: true,
-                },
-                {
-                    description: 'Suscribirse en Styde',
-                    pending: true,
-                },
-                {
-                    description: 'Grabar lección de Vue',
-                    pending: false,
-                },
-                {
-                    description: 'Aprender CSS modules',
-                    pending: false
-                }
-            ],
+            tasks: store.state.tasks
         }
     },
     methods: {
