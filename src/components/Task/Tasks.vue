@@ -1,10 +1,10 @@
 <template>
     <div>
-        <app-task-list :tasks="tasks"></app-task-list>
+        <task-list :tasks="tasks"></task-list>
 
         <p><a @click.prevent="deleteCompleted" href="#" class="btn btn-light">Eliminar tareas completadas</a></p>
 
-        <app-task-form @created="createTask"></app-task-form>
+        <task-form @created="createTask"></task-form>
     </div>
 </template>
 
@@ -14,8 +14,8 @@ import TaskForm from './CreateForm.vue'
 
 export default {
     components: {
-        'app-task-list': TaskList,
-        'app-task-form' : TaskForm
+        'task-list': TaskList,
+        'task-form' : TaskForm
     },
     created() {
         this.tasks.forEach((task, index) => {

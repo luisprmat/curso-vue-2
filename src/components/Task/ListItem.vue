@@ -32,7 +32,6 @@
 </template>
 
 <script>
-import EventBus from 'src/event-bus.js'
 import Icon from 'components/Icon.vue'
 
 export default {
