@@ -1,29 +1,36 @@
-<template>
-    <div v-if="task">
-        <h2 class="subtitle">Editar tarea</h2>
-
-        <form @submit.prevent="update">
-            <div class="form-group">
-                <label for="title">Título</label>
-                <input type="text" class="form-control" v-model="task.title" id="title">
-            </div>
-
-            <div class="form-group">
-                <label for="description">Descripción</label>
-                <textarea id="description" rows="6" v-model="task.description" class="form-control"></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Actualizar tarea</button>
-            <router-link :to="{ name: 'tasks.details', params: {id: this.id}}" class="btn btn-secondary">Cancelar</router-link>
-        </form>
-    </div>
-
-</template>
-
 <script>
 import store from 'store'
+import Form from './Form.vue'
+import Wait from './Waiting.vue'
 
 export default {
     props: ['id'],
+    render(createElement) {
+        if (!this.task) {
+            return createElement(Wait, {
+                props: {
+                    action: 'Cargando tarea'
+                }
+            });
+        }
+        return createElement(Form, {
+            props: {
+                title: 'Editar tarea',
+                action: 'Actualizar tarea',
+                task: this.task
+            },
+            on: {
+                save: (draft) => {
+                    store.updateTask(this.id, draft);
+
+                    this.$router.push({
+                        name: 'tasks.details',
+                        params: {id: this.id}
+                    });
+                }
+            }
+        });
+    },
     data() {
         return {
             task: null
@@ -37,18 +44,12 @@ export default {
     },
     methods: {
         findTask() {
-            this.task = clone(store.findTask(this.id));
+            setTimeout(() => {
+                this.task = clone(store.findTask(this.id));
 
-            not_found_unless(this.task);
+                not_found_unless(this.task);
+            }, 500);
         },
-        update() {
-            store.updateTask(this.id, this.task);
-
-            this.$router.push({
-                name: 'tasks.details',
-                params: {id: this.id}
-            });
-        }
     }
 }
 </script>
