@@ -1,6 +1,6 @@
 <template>
     <li @click="select" class="list-group-item task-list-item"
-        :class="{completed: !task.pending}">
+        :class="{active: isActive, completed: !task.pending}">
         <a @click.stop="toggleStatus" href="#">
             <app-icon :img="task.pending ? 'unchecked' : 'check'"></app-icon>
         </a>
@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import store from 'store'
 import Icon from 'components/Icon.vue'
 
 export default {
@@ -21,13 +22,22 @@ export default {
             draft: '',
         };
     },
-    props: ['task', 'index'],
+    props: ['task'],
+    computed: {
+        isActive() {
+            return this.task.id == this.$route.params.id;
+        }
+    },
     methods: {
         select() {
-            this.$router.push('/tasks/' + this.task.id);
+            let route = this.isActive
+                ? {name: 'tasks'}
+                : {name: 'tasks.details', params: {id: this.task.id}};
+
+            this.$router.push(route);
         },
         toggleStatus() {
-            this.task.pending = !this.task.pending;
+            store.toggleTask(this.task);
         }
     }
 }
@@ -56,6 +66,9 @@ export default {
                 color: #999;
             }
         }
-    }
 
+        &.active a, &.active {
+            color: white;
+        }
+    }
 </style>

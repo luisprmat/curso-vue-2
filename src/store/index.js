@@ -32,5 +32,20 @@ export default {
     },
     findTask(id) {
         return this.state.tasks.find(task => task.id == id)
+    },
+    createTask(task) {
+        task.id = this.state.tasks.length + 1;
+
+        task.pending = true;
+
+        this.state.tasks.push(task);
+    },
+    toggleTask(task) {
+        task.pending = !task.pending;
+    },
+    deleteTask(id) {
+        let index = this.state.tasks.findIndex(task => task.id == id);
+
+        this.state.tasks.splice(index, 1);
     }
 }

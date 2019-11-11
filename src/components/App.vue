@@ -2,18 +2,16 @@
     <div id="app" class="container">
         <h1>Curso de Vue.js</h1>
 
-        <ul class="nav nav-tabs">
+        <ul class="nav nav-tabs mb-3">
             <li class="nav-item">
-                <router-link to="/" active-class="active" class="nav-link" exact>Dashboard</router-link>
+                <router-link :to="{name: 'dashboard'}" active-class="active" class="nav-link" exact>Dashboard</router-link>
             </li>
             <li class="nav-item">
-                <router-link to="/tasks" active-class="active" class="nav-link">Tareas</router-link>
+                <router-link :to="{name: 'tasks'}" active-class="active" class="nav-link">Tareas</router-link>
             </li>
         </ul>
 
-        <keep-alive>
-            <router-view></router-view>
-        </keep-alive>
+        <router-view></router-view>
 
         <footer class="footer">
             <p>&copy; 2019. {{ name }}. Derechos reservados</p>
@@ -39,7 +37,7 @@ export default {
     }
 
     .container {
-        max-width: 670px;
+        max-width: 920px;
 
         h2 {
             margin-bottom: 20px;
