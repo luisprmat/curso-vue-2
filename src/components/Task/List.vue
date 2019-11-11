@@ -23,21 +23,17 @@ import store from 'store'
 import TaskItem from './ListItem.vue'
 
 export default {
+    computed: {
+        tasks() {
+            return store.state.tasks;
+        }
+    },
     components: {
         'task-item': TaskItem
     },
-    data() {
-        return {
-            new_task: '',
-            tasks: store.state.tasks
-        }
-    },
     methods: {
-        createTask(task) {
-            this.tasks.push(task);
-        },
         deleteCompleted() {
-            this.tasks = this.tasks.filter(task => task.pending)
+            store.deleteCompletedTasks();
         }
     }
 }

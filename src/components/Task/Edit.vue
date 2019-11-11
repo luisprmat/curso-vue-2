@@ -1,18 +1,15 @@
 <script>
 import store from 'store'
 import Form from './Form.vue'
-import Wait from './Waiting.vue'
 
 export default {
     props: ['id'],
-    render(createElement) {
-        if (!this.task) {
-            return createElement(Wait, {
-                props: {
-                    action: 'Cargando tarea'
-                }
-            });
+    computed: {
+        task() {
+            return store.findTask(this.id);
         }
+    },
+    render(createElement) {
         return createElement(Form, {
             props: {
                 title: 'Editar tarea',
@@ -31,25 +28,5 @@ export default {
             }
         });
     },
-    data() {
-        return {
-            task: null
-        }
-    },
-    created() {
-        this.findTask();
-    },
-    watch: {
-        'id': 'findTask'
-    },
-    methods: {
-        findTask() {
-            setTimeout(() => {
-                this.task = clone(store.findTask(this.id));
-
-                not_found_unless(this.task);
-            }, 500);
-        },
-    }
 }
 </script>

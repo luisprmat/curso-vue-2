@@ -26,26 +26,15 @@ import Icon from 'components/Icon.vue'
 
 export default {
     props: ['id'],
+    computed: {
+        task() {
+            return store.findTask(this.id)
+        }
+    },
     components: {
         'app-icon': Icon
     },
-    data() {
-        return {
-            task: null
-        }
-    },
-    created() {
-        this.findTask();
-    },
-    watch: {
-        id: 'findTask'
-    },
     methods: {
-        findTask() {
-            this.task = store.findTask(this.id);
-
-            not_found_unless(this.task);
-        },
         toggleTask() {
             store.toggleTask(this.task);
         },
