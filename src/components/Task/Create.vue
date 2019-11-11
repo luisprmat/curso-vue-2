@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2 class="subtitle">Nueva Tarea</h2>
+        <h2 class="subtitle">Nueva tarea</h2>
 
         <form @submit.prevent="create">
             <div class="form-group">

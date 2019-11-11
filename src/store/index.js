@@ -43,6 +43,11 @@ export default {
     toggleTask(task) {
         task.pending = !task.pending;
     },
+    updateTask(id, task) {
+        let index = this.state.tasks.findIndex(task => task.id == id);
+
+        this.state.tasks.splice(index, 1, task);
+    },
     deleteTask(id) {
         let index = this.state.tasks.findIndex(task => task.id == id);
 
