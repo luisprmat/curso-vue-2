@@ -33,7 +33,7 @@ export default {
     },
     methods: {
         deleteCompleted() {
-            store.deleteCompletedTasks();
+            store.dispatch('deleteCompletedTasks');
         }
     }
 }

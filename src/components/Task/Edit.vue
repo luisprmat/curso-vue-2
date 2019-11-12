@@ -6,7 +6,7 @@ export default {
     props: ['id'],
     computed: {
         task() {
-            return store.findTask(this.id);
+            return store.getters.findTask(this.id);
         }
     },
     render(createElement) {
@@ -18,7 +18,7 @@ export default {
             },
             on: {
                 save: (draft) => {
-                    store.updateTask(this.id, draft);
+                    store.dispatch('updateTask', { id: this.id, draft });
 
                     this.$router.push({
                         name: 'tasks.details',
